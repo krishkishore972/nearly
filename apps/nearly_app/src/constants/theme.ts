@@ -112,7 +112,6 @@ export const Radius = {
 } as const;
 
 export const Spacing = {
-  half: 2,
   one: 4,
   two: 8,
   three: 12,

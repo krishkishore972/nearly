@@ -37,10 +37,10 @@ export default function TabLayout() {
         },
         tabBarItemStyle: {
           height: 56,
-          paddingVertical: Spacing.half,
+          paddingVertical: Spacing.one,
         },
         tabBarIconStyle: {
-          marginTop: Spacing.half,
+          marginTop: Spacing.one,
         },
       }}>
       <Tabs.Screen

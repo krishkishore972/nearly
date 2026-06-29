@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     height: 64,
     borderRadius: Radius.pill,
     borderWidth: 2,
-    padding: Spacing.half,
+    padding: Spacing.one,
   },
   serviceAvatar: {
     flex: 1,
@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
   ratingPill: {
     borderRadius: Radius.small,
     paddingHorizontal: Spacing.two,
-    paddingVertical: Spacing.half,
+    paddingVertical: Spacing.one,
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.one,

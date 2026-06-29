@@ -309,10 +309,10 @@ const styles = StyleSheet.create({
     bottom: -Spacing.one,
     borderRadius: Radius.pill,
     paddingHorizontal: Spacing.two,
-    paddingVertical: Spacing.half,
+    paddingVertical: Spacing.one,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.half,
+    gap: Spacing.one,
   },
   verifiedText: {
     fontSize: 10,
