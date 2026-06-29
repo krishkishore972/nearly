@@ -13,7 +13,7 @@ import {
 } from '@/components/nivaas';
 import { Spacing } from '@/constants/theme';
 
-export default function MarketplaceTab() {
+export default function BuyOrSell() {
   return (
     <NivaasScreen>
       <Section title="Marketplace">

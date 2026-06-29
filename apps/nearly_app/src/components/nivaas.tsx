@@ -17,7 +17,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
-  BottomTabInset,
   Colors,
   Fonts,
   IconSize,
@@ -80,7 +79,7 @@ export function NivaasScreen({
 
   return (
     <View style={[styles.screen, { backgroundColor: theme.background }]}>
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView edges={['top']} style={styles.safeArea}>
         {scroll ? (
           <ScrollView contentContainerStyle={styles.scrollContent}>{content}</ScrollView>
         ) : (
@@ -416,7 +415,7 @@ const styles = StyleSheet.create({
     maxWidth: MaxContentWidth,
   },
   scrollContent: {
-    paddingBottom: BottomTabInset + Spacing.seven,
+    paddingBottom: Spacing.four,
   },
   screenContent: {
     gap: Spacing.six,

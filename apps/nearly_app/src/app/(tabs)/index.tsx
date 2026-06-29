@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Badge, NivaasCard, NivaasIcon, NivaasText } from '@/components/nivaas';
-import { BottomTabInset, Radius, Shadows, Spacing } from '@/constants/theme';
+import { Radius, Shadows, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 type QuickAction = {
@@ -289,7 +289,6 @@ const styles = StyleSheet.create({
   content: {
     gap: Spacing.four,
     padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.seven,
   },
   quickActionCard: {
     borderWidth: 1,

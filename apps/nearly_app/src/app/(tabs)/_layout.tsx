@@ -9,7 +9,7 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const colors = Colors[colorScheme === 'dark' ? 'dark' : 'light'];
-  const bottomInset = Math.max(insets.bottom, Spacing.six);
+  const bottomInset = Math.max(insets.bottom, Spacing.three);
 
   return (
     <Tabs
@@ -27,20 +27,20 @@ export default function TabLayout() {
           lineHeight: 14,
         },
         tabBarStyle: {
-          height: 72 + bottomInset,
-          paddingTop: Spacing.two,
+          height: 56 + bottomInset,
+          paddingTop: Spacing.one,
           paddingBottom: bottomInset,
           backgroundColor: colors.surfaceLowest,
           borderTopColor: colors.outlineVariant,
-          borderTopLeftRadius: Radius.extraLarge,
-          borderTopRightRadius: Radius.extraLarge,
+          borderTopLeftRadius: Radius.large,
+          borderTopRightRadius: Radius.large,
         },
         tabBarItemStyle: {
-          height: 56,
-          paddingVertical: Spacing.one,
+          height: 48,
+          paddingVertical: 0,
         },
         tabBarIconStyle: {
-          marginTop: Spacing.one,
+          marginTop: 0,
         },
       }}>
       <Tabs.Screen
@@ -52,7 +52,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="marketPlace"
+        name="buyOrSell"
         options={{
           title: 'Buy/Sell',
           tabBarIcon: ({ color }) => (

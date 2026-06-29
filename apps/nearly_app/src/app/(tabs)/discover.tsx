@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { NivaasCard, NivaasIcon, NivaasText } from '@/components/nivaas';
-import { BottomTabInset, Radius, Shadows, Spacing } from '@/constants/theme';
+import { Radius, Shadows, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 type IconName = Parameters<typeof NivaasIcon>[0]['name'];
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
     gap: Spacing.six,
     paddingHorizontal: Spacing.four,
     paddingTop: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.seven,
+    paddingBottom: Spacing.four,
   },
   searchBox: {
     minHeight: 48,
