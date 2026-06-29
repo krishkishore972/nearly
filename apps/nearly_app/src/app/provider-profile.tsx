@@ -1,4 +1,4 @@
-import { Stack, useRouter } from 'expo-router';
+import { Stack, useRouter, type Href } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -41,6 +41,8 @@ const reviews = [
     date: '1 WEEK AGO',
   },
 ];
+
+const bookingSummaryHref = '/booking-summary' as Href;
 
 export default function ProviderProfileScreen() {
   const router = useRouter();
@@ -203,7 +205,9 @@ export default function ProviderProfileScreen() {
             <NivaasIcon name="message-square" color={theme.primary} size={20} />
             <NivaasText color="primary">Message</NivaasText>
           </Pressable>
-          <Pressable style={[styles.bookButton, { backgroundColor: theme.primaryContainer }, Shadows.level2]}>
+          <Pressable
+            style={[styles.bookButton, { backgroundColor: theme.primaryContainer }, Shadows.level2]}
+            onPress={() => router.push(bookingSummaryHref)}>
             <NivaasIcon name="calendar" color={theme.onPrimaryContainer} size={20} />
             <NivaasText color="onPrimaryContainer">Book Now</NivaasText>
           </Pressable>

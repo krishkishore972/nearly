@@ -13,6 +13,8 @@ export default function RootLayout() {
         <AnimatedSplashOverlay />
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="provider-profile" options={{ headerShown: false }} />
+          <Stack.Screen name="booking-summary" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" options={{ title: 'Oops! Not Found' }} />
         </Stack>
       </ThemeProvider>
