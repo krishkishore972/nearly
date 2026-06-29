@@ -36,6 +36,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
+          headerShown: false,
           tabBarIcon: ({ color }) => <NivaasIcon name="home" color={String(color)} size={24} />,
         }}
       />
