@@ -1,54 +1,58 @@
-import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import {
+  Badge,
+  Button,
+  ChatBubble,
+  Chip,
+  NivaasCard,
+  NivaasScreen,
+  NivaasText,
+  SearchBar,
+  Section,
+} from '@/components/nivaas';
+import { Spacing } from '@/constants/theme';
 
-const places = ['Weekend makers market', 'Live music downtown', 'Open studio night'];
-
-export default function DiscoverTab() {
+export default function AskAiTab() {
   return (
-    <ThemedView style={styles.screen}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.content}>
-          <ThemedText type="subtitle">Discover</ThemedText>
-          <ThemedText themeColor="textSecondary">
-            Browse sample nearby experiences and local things to try next.
-          </ThemedText>
+    <NivaasScreen>
+      <Section title="Ask AI">
+        <NivaasText variant="headlineLarge">Calm answers for neighborhood life</NivaasText>
+        <SearchBar ai placeholder="Ask about vendors, notices, events or safety" />
+      </Section>
 
-          {places.map((place) => (
-            <ThemedView key={place} type="backgroundElement" style={styles.row}>
-              <ThemedText type="smallBold">{place}</ThemedText>
-              <ThemedText type="small" themeColor="textSecondary">
-                Suggested for this week
-              </ThemedText>
-            </ThemedView>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    </ThemedView>
+      <NivaasCard variant="ai">
+        <Badge tone="ai">AI Response</Badge>
+        <NivaasText variant="headlineMedium">Can I book a plumber today?</NivaasText>
+        <NivaasText>
+          Yes. Two verified providers are available after 5 PM. Ramesh Repairs has the fastest
+          response time and accepts UPI.
+        </NivaasText>
+        <NivaasText variant="label" color="aiDark">
+          Source: Business directory, resident reviews and availability updates
+        </NivaasText>
+      </NivaasCard>
+
+      <Section title="Suggested prompts">
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.three }}>
+          <Chip ai>Summarize notices</Chip>
+          <Chip ai>Find emergency help</Chip>
+          <Chip ai>Plan weekend events</Chip>
+          <Chip ai>Compare vendors</Chip>
+        </View>
+      </Section>
+
+      <Section title="Conversation">
+        <ChatBubble>Which businesses are verified near Tower B?</ChatBubble>
+        <ChatBubble ai>
+          I found 8 verified businesses nearby, including grocery, tiffin, repair and pharmacy
+          options.
+        </ChatBubble>
+      </Section>
+
+      <Button fullWidth variant="secondary" icon="mic">
+        Start voice search
+      </Button>
+    </NivaasScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  safeArea: {
-    flex: 1,
-    width: '100%',
-    maxWidth: MaxContentWidth,
-  },
-  content: {
-    gap: Spacing.three,
-    padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
-  },
-  row: {
-    gap: Spacing.one,
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-  },
-});

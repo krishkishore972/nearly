@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
-import { Colors } from '@/constants/theme';
+import { NivaasIcon } from '@/components/nivaas';
+import { Colors, Radius, Spacing } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
@@ -11,55 +11,57 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#3c87f7',
-        tabBarInactiveTintColor: colors.textSecondary,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.onSurfaceVariant,
         headerStyle: {
           backgroundColor: colors.background,
         },
         headerShadowVisible: false,
-        headerTintColor: colors.text,
+        headerTintColor: colors.onSurface,
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
         tabBarStyle: {
-          backgroundColor: colors.background,
-          borderTopColor: colors.backgroundElement,
+          minHeight: 72,
+          paddingTop: Spacing.two,
+          paddingBottom: Spacing.three,
+          backgroundColor: colors.surfaceLowest,
+          borderTopColor: colors.outlineVariant,
+          borderTopLeftRadius: Radius.extraLarge,
+          borderTopRightRadius: Radius.extraLarge,
         },
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+          tabBarIcon: ({ color }) => <NivaasIcon name="home" color={String(color)} size={24} />,
+        }}
+      />
+      <Tabs.Screen
+        name="marketPlace"
+        options={{
+          title: 'Marketplace',
+          tabBarIcon: ({ color }) => (
+            <NivaasIcon name="shopping-bag" color={String(color)} size={24} />
           ),
         }}
       />
       <Tabs.Screen
         name="discover"
         options={{
-          title: 'Discover',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'compass' : 'compass-outline'} color={color} size={24} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="marketPlace"
-        options={{
-          title: 'Market',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'storefront' : 'storefront-outline'} color={color} size={24} />
-          ),
+          title: 'Ask AI',
+          tabBarActiveTintColor: colors.aiPrimary,
+          tabBarIcon: ({ color }) => <NivaasIcon name="cpu" color={String(color)} size={24} />,
         }}
       />
       <Tabs.Screen
         name="chats"
         options={{
-          title: 'Chats',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? 'chatbubbles' : 'chatbubbles-outline'}
-              color={color}
-              size={24}
-            />
+          title: 'Community',
+          tabBarIcon: ({ color }) => (
+            <NivaasIcon name="message-circle" color={String(color)} size={24} />
           ),
         }}
       />
@@ -67,13 +69,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? 'person-circle' : 'person-circle-outline'}
-              color={color}
-              size={24}
-            />
-          ),
+          tabBarIcon: ({ color }) => <NivaasIcon name="user" color={String(color)} size={24} />,
         }}
       />
     </Tabs>

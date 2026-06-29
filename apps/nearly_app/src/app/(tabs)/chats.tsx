@@ -1,54 +1,60 @@
-import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import {
+  Avatar,
+  Badge,
+  Button,
+  ListItem,
+  NivaasCard,
+  NivaasScreen,
+  NivaasText,
+  Section,
+} from '@/components/nivaas';
+import { Spacing } from '@/constants/theme';
 
-const conversations = ['Ava from the book club', 'Market Street vendors', 'Neighborhood run crew'];
-
-export default function ChatsTab() {
+export default function CommunityTab() {
   return (
-    <ThemedView style={styles.screen}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.content}>
-          <ThemedText type="subtitle">Chats</ThemedText>
-          <ThemedText themeColor="textSecondary">
-            Sample conversations for coordinating plans and quick local questions.
-          </ThemedText>
+    <NivaasScreen>
+      <Section title="Community">
+        <NivaasText variant="headlineLarge">Resident feed and groups</NivaasText>
+        <NivaasText color="onSurfaceVariant">
+          Announcements, complaints, reviews and neighbor conversations in one calm place.
+        </NivaasText>
+      </Section>
 
-          {conversations.map((conversation) => (
-            <ThemedView key={conversation} type="backgroundElement" style={styles.thread}>
-              <ThemedText type="smallBold">{conversation}</ThemedText>
-              <ThemedText type="small" themeColor="textSecondary">
-                Last message just now
-              </ThemedText>
-            </ThemedView>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    </ThemedView>
+      <NivaasCard>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.three }}>
+          <Avatar initials="AM" />
+          <View style={{ flex: 1 }}>
+            <NivaasText variant="bodyLarge">Ananya Mehta</NivaasText>
+            <NivaasText variant="bodyMedium" color="onSurfaceVariant">
+              Tower C · 12 minutes ago
+            </NivaasText>
+          </View>
+          <Badge tone="trending">Trending</Badge>
+        </View>
+        <NivaasText>
+          Has anyone tried the new laundry pickup service? Looking for reviews before booking.
+        </NivaasText>
+        <Button variant="ghost" icon="message-circle">
+          Comment
+        </Button>
+      </NivaasCard>
+
+      <Section title="Groups">
+        <ListItem
+          icon="users"
+          title="Tower B residents"
+          subtitle="18 new messages about parking allocation"
+          badge={<Badge tone="new">New</Badge>}
+        />
+        <ListItem
+          icon="alert-triangle"
+          title="Safety alerts"
+          subtitle="Security team posted a gate access update"
+          badge={<Badge tone="emergency">Emergency</Badge>}
+        />
+      </Section>
+    </NivaasScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  safeArea: {
-    flex: 1,
-    width: '100%',
-    maxWidth: MaxContentWidth,
-  },
-  content: {
-    gap: Spacing.three,
-    padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
-  },
-  thread: {
-    gap: Spacing.one,
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-  },
-});

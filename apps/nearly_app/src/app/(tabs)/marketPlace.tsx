@@ -1,54 +1,58 @@
-import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-const listings = ['Handmade ceramic mug', 'Desk plant bundle', 'Vintage denim jacket'];
+import {
+  Badge,
+  Button,
+  Chip,
+  ListItem,
+  NivaasCard,
+  NivaasScreen,
+  NivaasText,
+  SearchBar,
+  Section,
+} from '@/components/nivaas';
+import { Spacing } from '@/constants/theme';
 
 export default function MarketplaceTab() {
   return (
-    <ThemedView style={styles.screen}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.content}>
-          <ThemedText type="subtitle">Marketplace</ThemedText>
-          <ThemedText themeColor="textSecondary">
-            Sample local listings from people and shops around you.
-          </ThemedText>
+    <NivaasScreen>
+      <Section title="Marketplace">
+        <NivaasText variant="headlineLarge">Buy, sell and discover nearby</NivaasText>
+        <SearchBar placeholder="Search furniture, tiffin, services" />
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.three }}>
+          <Chip selected>All</Chip>
+          <Chip>Home</Chip>
+          <Chip>Food</Chip>
+          <Chip>Services</Chip>
+        </View>
+      </Section>
 
-          {listings.map((listing) => (
-            <ThemedView key={listing} type="backgroundElement" style={styles.card}>
-              <ThemedText type="smallBold">{listing}</ThemedText>
-              <ThemedText type="small" themeColor="textSecondary">
-                Available nearby
-              </ThemedText>
-            </ThemedView>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
-    </ThemedView>
+      <NivaasCard>
+        <Badge tone="verified">Verified Resident</Badge>
+        <NivaasText variant="headlineMedium">Wooden study table</NivaasText>
+        <NivaasText color="onSurfaceVariant">
+          Gently used, compact desk with two drawers. Pickup from Tower A.
+        </NivaasText>
+        <NivaasText variant="headlineMedium">Rs. 2,800</NivaasText>
+        <Button variant="secondary" icon="message-circle">
+          Contact seller
+        </Button>
+      </NivaasCard>
+
+      <Section title="Local businesses" action="Directory">
+        <ListItem
+          icon="coffee"
+          title="Asha Tiffin Service"
+          subtitle="4.8 rating · Homemade meals · Delivers today"
+          badge={<Badge tone="premium">Premium</Badge>}
+        />
+        <ListItem
+          icon="tool"
+          title="Ramesh Repairs"
+          subtitle="Electrical and plumbing support within 30 minutes"
+          badge={<Badge tone="verified">Verified</Badge>}
+        />
+      </Section>
+    </NivaasScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  safeArea: {
-    flex: 1,
-    width: '100%',
-    maxWidth: MaxContentWidth,
-  },
-  content: {
-    gap: Spacing.three,
-    padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
-  },
-  card: {
-    gap: Spacing.one,
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-  },
-});

@@ -1,50 +1,61 @@
-import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
+import { View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import {
+  Avatar,
+  Badge,
+  Button,
+  Divider,
+  ListItem,
+  NivaasCard,
+  NivaasScreen,
+  NivaasText,
+  Progress,
+  Section,
+  ToggleRow,
+} from '@/components/nivaas';
+import { Spacing } from '@/constants/theme';
 
 export default function ProfileTab() {
-  return (
-    <ThemedView style={styles.screen}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.content}>
-          <ThemedText type="subtitle">Profile</ThemedText>
-          <ThemedText themeColor="textSecondary">
-            A sample personal hub for interests, saved places, and local activity.
-          </ThemedText>
+  const [emergencyAlerts, setEmergencyAlerts] = useState(true);
 
-          <ThemedView type="backgroundElement" style={styles.summary}>
-            <ThemedText type="smallBold">Kishore</ThemedText>
-            <ThemedText type="small" themeColor="textSecondary">
-              12 saved places · 5 active chats
-            </ThemedText>
-          </ThemedView>
-        </ScrollView>
-      </SafeAreaView>
-    </ThemedView>
+  return (
+    <NivaasScreen>
+      <NivaasCard>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: Spacing.three }}>
+          <Avatar initials="KR" />
+          <View style={{ flex: 1 }}>
+            <NivaasText variant="headlineMedium">Kishore R</NivaasText>
+            <NivaasText color="onSurfaceVariant">Tower A · Flat 904</NivaasText>
+          </View>
+          <Badge tone="verified">Verified Resident</Badge>
+        </View>
+        <Divider />
+        <NivaasText variant="label" color="onSurfaceVariant">
+          Profile completion
+        </NivaasText>
+        <Progress value={78} />
+      </NivaasCard>
+
+      <Section title="Preferences">
+        <NivaasCard>
+          <ToggleRow
+            label="Emergency alerts"
+            value={emergencyAlerts}
+            onValueChange={setEmergencyAlerts}
+          />
+        </NivaasCard>
+      </Section>
+
+      <Section title="Your Nivaas">
+        <ListItem icon="bookmark" title="Saved places" subtitle="12 businesses and services" />
+        <ListItem icon="star" title="Reviews" subtitle="5 helpful local reviews posted" />
+        <ListItem icon="shield" title="Privacy and verification" subtitle="Manage society access" />
+      </Section>
+
+      <Button fullWidth variant="outline" icon="settings">
+        Account settings
+      </Button>
+    </NivaasScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  safeArea: {
-    flex: 1,
-    width: '100%',
-    maxWidth: MaxContentWidth,
-  },
-  content: {
-    gap: Spacing.three,
-    padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
-  },
-  summary: {
-    gap: Spacing.one,
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-  },
-});

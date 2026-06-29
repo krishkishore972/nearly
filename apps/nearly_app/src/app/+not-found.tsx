@@ -1,30 +1,26 @@
-import { View, StyleSheet } from 'react-native';
 import { Link, Stack } from 'expo-router';
+import { StyleSheet } from 'react-native';
+
+import { NivaasText, NivaasScreen } from '@/components/nivaas';
 
 export default function NotFoundScreen() {
   return (
     <>
       <Stack.Screen options={{ title: 'Oops! Not Found' }} />
-      <View style={styles.container}>
+      <NivaasScreen scroll={false}>
+        <NivaasText variant="headlineLarge">This page is not available</NivaasText>
         <Link href="/" style={styles.button}>
-          Go back to Home screen!
+          Go back to Home
         </Link>
-      </View>
+      </NivaasScreen>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#25292e',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   button: {
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: '600',
     textDecorationLine: 'underline',
-    color: '#fff',
   },
 });

@@ -1,53 +1,78 @@
-import { ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import {
+  Badge,
+  Button,
+  Chip,
+  IconButton,
+  ListItem,
+  NivaasCard,
+  NivaasScreen,
+  NivaasText,
+  SearchBar,
+  Section,
+  StatCard,
+} from '@/components/nivaas';
+import { Spacing } from '@/constants/theme';
 
 export default function HomeTab() {
   return (
-    <ThemedView style={styles.screen}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.content}>
-          <ThemedText type="subtitle">Nearly home</ThemedText>
-          <ThemedText themeColor="textSecondary">
-            A quick sample dashboard for nearby moments, updates, and useful shortcuts.
-          </ThemedText>
+    <NivaasScreen>
+      <Section title="Nivaas">
+        <NivaasText variant="display">Good evening, Kishore</NivaasText>
+        <NivaasText color="onSurfaceVariant">
+          Your AI-first neighborhood dashboard for community, services, safety and local moments.
+        </NivaasText>
+        <SearchBar placeholder="Search your society, shops, events" />
+      </Section>
 
-          <ThemedView type="backgroundElement" style={styles.panel}>
-            <ThemedText type="smallBold">Today</ThemedText>
-            <ThemedText>3 new local updates are waiting for you.</ThemedText>
-          </ThemedView>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.three }}>
+        <StatCard icon="users" value="248" label="Residents" />
+        <StatCard icon="calendar" value="6" label="Events" />
+      </View>
 
-          <ThemedView type="backgroundElement" style={styles.panel}>
-            <ThemedText type="smallBold">Nearby pick</ThemedText>
-            <ThemedText>Fresh coffee pop-up at Market Street from 4 PM.</ThemedText>
-          </ThemedView>
-        </ScrollView>
-      </SafeAreaView>
-    </ThemedView>
+      <NivaasCard variant="ai">
+        <Badge tone="ai">AI Summary</Badge>
+        <NivaasText variant="headlineMedium">Society updates in brief</NivaasText>
+        <NivaasText>
+          Lift maintenance ends by 7 PM. Water tanker booking is confirmed. Two new marketplace
+          listings were verified by residents.
+        </NivaasText>
+        <NivaasText variant="label" color="aiDark">
+          Source: Society notices, vendor updates and resident posts
+        </NivaasText>
+      </NivaasCard>
+
+      <Section title="Quick Actions" action="View all">
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.three }}>
+          <Chip selected>Community</Chip>
+          <Chip>Events</Chip>
+          <Chip>Businesses</Chip>
+          <Chip>Complaints</Chip>
+        </View>
+      </Section>
+
+      <Section title="Neighborhood">
+        <ListItem
+          icon="shield"
+          title="Emergency contacts refreshed"
+          subtitle="Security desk and ambulance numbers are verified"
+          badge={<Badge tone="emergency">Emergency</Badge>}
+        />
+        <ListItem
+          icon="map-pin"
+          title="New grocery partner"
+          subtitle="Free delivery for Tower B and C this week"
+          badge={<Badge tone="verified">Verified</Badge>}
+        />
+      </Section>
+
+      <View style={{ alignItems: 'flex-end' }}>
+        <IconButton icon="cpu" ai />
+      </View>
+      <Button fullWidth icon="plus-circle">
+        Post an update
+      </Button>
+    </NivaasScreen>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  safeArea: {
-    flex: 1,
-    width: '100%',
-    maxWidth: MaxContentWidth,
-  },
-  content: {
-    gap: Spacing.three,
-    padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
-  },
-  panel: {
-    gap: Spacing.one,
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-  },
-});
