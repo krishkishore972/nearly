@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { NivaasIcon } from '@/components/nivaas';
 import { Colors, Radius, Spacing } from '@/constants/theme';
@@ -6,7 +7,9 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const colors = Colors[colorScheme === 'dark' ? 'dark' : 'light'];
+  const bottomInset = Math.max(insets.bottom, Spacing.six);
 
   return (
     <Tabs
@@ -19,17 +22,25 @@ export default function TabLayout() {
         headerShadowVisible: false,
         headerTintColor: colors.onSurface,
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 10,
           fontWeight: '600',
+          lineHeight: 14,
         },
         tabBarStyle: {
-          minHeight: 72,
+          height: 72 + bottomInset,
           paddingTop: Spacing.two,
-          paddingBottom: Spacing.three,
+          paddingBottom: bottomInset,
           backgroundColor: colors.surfaceLowest,
           borderTopColor: colors.outlineVariant,
           borderTopLeftRadius: Radius.extraLarge,
           borderTopRightRadius: Radius.extraLarge,
+        },
+        tabBarItemStyle: {
+          height: 56,
+          paddingVertical: Spacing.half,
+        },
+        tabBarIconStyle: {
+          marginTop: Spacing.half,
         },
       }}>
       <Tabs.Screen
@@ -43,18 +54,18 @@ export default function TabLayout() {
       <Tabs.Screen
         name="marketPlace"
         options={{
-          title: 'Marketplace',
+          title: 'Buy/Sell',
           tabBarIcon: ({ color }) => (
-            <NivaasIcon name="shopping-bag" color={String(color)} size={24} />
+            <NivaasIcon name="shopping-bag" color={String(color)} size={22} />
           ),
         }}
       />
       <Tabs.Screen
         name="discover"
         options={{
-          title: 'Ask AI',
-          tabBarActiveTintColor: colors.aiPrimary,
-          tabBarIcon: ({ color }) => <NivaasIcon name="cpu" color={String(color)} size={24} />,
+          title: 'Discover',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <NivaasIcon name="compass" color={String(color)} size={24} />,
         }}
       />
       <Tabs.Screen
