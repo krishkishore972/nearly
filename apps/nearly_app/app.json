@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "nearly_client",
-    "slug": "nearly_client",
+    "name": "nearly_app",
+    "slug": "nearly_app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "nearlyclient",
+    "scheme": "nearlyapp",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
